@@ -1,4 +1,4 @@
-let wordList = ["hangman", "javascript", "programming", "example"]; // Lista de palavras
+let wordList = ["cachorro","hangman", "javascript", "programming", "example"]; // Lista de palavras
 let word; // Palavra escolhida
 let hiddenWord = []; // Palavra escondida (com underscores)
 let guessedLetters = []; // Letras já adivinhadas
@@ -38,7 +38,7 @@ function displayHiddenWord() {
 function displayGuessedLetters() {
     textAlign(LEFT);
     textSize(16);
-    text("Guessed Letters: " + guessedLetters.join(", "), 10, 20);
+    text("Gued Letters: " + guessedLetters.join(", "), 10, 20);
 }
 
 function displayAttemptsLeft() {
