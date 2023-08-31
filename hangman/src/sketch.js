@@ -63,41 +63,47 @@ class HangmanGame {
     }
 
     drawHangman(attemptsLeft) {
-        let startX = 100;
-        let startY = this.canvasHeight - 100;
-        let endX = startX;
-        let endY = startY - 100;
+        let startY = 50;
+        let bodyHeight = 55;
+        let gallowsHangerHeight = 70;
+        let headSize = 40;
+        let gallowsRopeY = startY + gallowsHangerHeight;
+        let armStart = gallowsRopeY + headSize / 2;
+        let legStart = gallowsRopeY + bodyHeight;
+        let startX =  this.canvasWidth / 2 - 75;
 
         // Draw gallows
         line(startX, startY, startX + 150, startY);
-        line(startX + 75, startY, startX + 75, startY - 200);
-        line(startX, startY, startX, endY);
+        line(startX + 75, startY, startX + 75, startY + 200);
+        line(startX, startY, startX, gallowsRopeY);
 
         // Draw person
-        if (attemptsLeft <= 5) {
-            ellipse(startX, startY - 200, 50, 50); // head
-        }
+
         if (attemptsLeft <= 4) {
-            line(startX, startY - 175, startX, startY - 125); // body
+            line(startX, gallowsRopeY, startX, gallowsRopeY + bodyHeight); // body
         }
         if (attemptsLeft <= 3) {
-            line(startX, startY - 150, startX - 30, startY - 100); // left arm
+            line(startX, armStart, startX - 20, armStart + 40); // left arm
         }
         if (attemptsLeft <= 2) {
-            line(startX, startY - 150, startX + 30, startY - 100); // right arm
+            line(startX, armStart, startX + 20, armStart + 40); // right arm
         }
         if (attemptsLeft <= 1) {
-            line(startX, startY - 125, startX - 30, startY - 50); // left leg
+            line(startX, legStart, startX - 20, legStart + 55); // left leg
         }
         if (attemptsLeft === 0) {
-            line(startX, startY - 125, startX + 30, startY - 50); // right leg
+            line(startX, legStart, startX + 20, legStart + 55); // right leg
+        }
+        if (attemptsLeft <= 5) {
+            // The head must be the last drawed element to not be overlaped by other elements
+            ellipse(startX, gallowsRopeY, headSize, headSize); // head 
         }
     }
 
     displayHiddenWord() {
         textAlign(CENTER, CENTER);
         textSize(32);
-        text(this.hiddenWord.join(" "), this.canvasWidth / 2, this.canvasHeight / 2);
+        text(this.hiddenWord.join(" "), this.canvasWidth / 2, this.canvasHeight * 0.75);
     }
 
     displayGuessedLetters() {
